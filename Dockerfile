@@ -1,4 +1,5 @@
 # Imagen base oficial de Python
+# Cambio mínimo para forzar redeploy
 FROM python:3.12-slim
 
 # Establecer directorio de trabajo
