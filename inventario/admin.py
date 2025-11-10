@@ -10,7 +10,7 @@ class EquipoAdmin(admin.ModelAdmin):
     list_filter = ("estado", "categoria")
     readonly_fields = ('id',)
 
-    list_display = ("codigo", "nombre", "categoria", "estado", "ubicacion","registradoPor_id", "fecha_registro")
-    search_fields = ("codigo", "nombre", "categoria", "ubicacion", "registradoPor_id")
-    list_filter = ("estado", "categoria", "registradoPor_id")
+    list_display = ("codigo", "nombre", "categoria", "estado", "ubicacion", "fecha_registro")
+    search_fields = ("codigo", "nombre", "categoria", "ubicacion" )
+    list_filter = ("estado", "categoria")
 
