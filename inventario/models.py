@@ -28,8 +28,8 @@ class Equipo(models.Model):
     qr_uuid = models.UUIDField(default=uuid.uuid4, editable=False, blank=True, null=True)
 
 
-
-    registradoPor_id = models.IntegerField(null=True, blank=True)  # ID del profesor que registró el equipo
+#
+    #registradoPor_id = models.IntegerField(null=True, blank=True)  # ID del profesor que registró el equipo
     fecha_registro = models.DateTimeField(auto_now_add=True)  # Se llena automáticamente al crear
     ultima_actualizacion = models.DateTimeField(auto_now=True) # Actualiza cada vez que se modifica
     qr_uuid = models.CharField(max_length=64, blank=True, null=True, unique=True)  # campo reservado para QR
