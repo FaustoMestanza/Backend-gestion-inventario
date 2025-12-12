@@ -1,33 +1,11 @@
 from rest_framework.test import APITestCase
 from rest_framework import status
-from django.contrib.auth.models import User
 from inventario.models import Equipo
 
 class EquipoAPITest(APITestCase):
 
     def setUp(self):
-        # Usuario de pruebas
-        self.user = User.objects.create_user(
-            username="testuser",
-            password="test1234"
-        )
-
-        # Login JWT
-        token = self.client.post(
-            "/api/token/",
-            {
-                "username": "testuser",
-                "password": "test1234"
-            },
-            format="json"
-        )
-
-        self.client.credentials(
-            HTTP_AUTHORIZATION=f"Bearer {token.data['access']}"
-        )
-
         self.url = "/api/equipos/"
-
         Equipo.objects.create(
             codigo="EQ-100",
             nombre="Proyector Epson"
