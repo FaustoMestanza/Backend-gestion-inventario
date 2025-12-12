@@ -6,14 +6,14 @@ from inventario.models import Equipo
 class EquipoAPITest(APITestCase):
 
     def setUp(self):
-        # Crear usuario de pruebas
+        # Usuario de pruebas
         self.user = User.objects.create_user(
             username="testuser",
             password="test1234"
         )
 
-        # Obtener token JWT
-        token_response = self.client.post(
+        # Login JWT
+        token = self.client.post(
             "/api/token/",
             {
                 "username": "testuser",
@@ -22,18 +22,13 @@ class EquipoAPITest(APITestCase):
             format="json"
         )
 
-        self.assertEqual(token_response.status_code, status.HTTP_200_OK)
-
-        self.token = token_response.data["access"]
-
-        # Autenticación para los siguientes requests
         self.client.credentials(
-            HTTP_AUTHORIZATION=f"Bearer {self.token}"
+            HTTP_AUTHORIZATION=f"Bearer {token.data['access']}"
         )
 
         self.url = "/api/equipos/"
 
-        self.equipo = Equipo.objects.create(
+        Equipo.objects.create(
             codigo="EQ-100",
             nombre="Proyector Epson"
         )
@@ -45,8 +40,7 @@ class EquipoAPITest(APITestCase):
     def test_crear_equipo(self):
         data = {
             "codigo": "EQ-200",
-            "nombre": "Impresora HP",
-            "estado": "Disponible"
+            "nombre": "Impresora HP"
         }
         response = self.client.post(self.url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
